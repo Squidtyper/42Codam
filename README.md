@@ -1,12 +1,12 @@
 # 42Codam
 A selection of a few school projects
 
-Content\n
-libft:\n
-Language C\n
+Content
+libft:
+Language C
 Rewrite some stdlib string and unistd functions with some extra handy functions to be used later in other projects.
-\n\n
-printf: \n
+
+printf: 
 Language C
 Rewrite a simplified version of printf function from stdio library.
 
