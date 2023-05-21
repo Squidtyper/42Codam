@@ -2,7 +2,7 @@
 A selection of a few school projects
 
 ## Content
-<p>**libft:** <br>
+**libft:**
 Language C
 Rewrite some stdlib string and unistd functions with some extra handy functions to be used later in other projects.
 
