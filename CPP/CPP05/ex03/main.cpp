@@ -6,20 +6,18 @@
 /*   By: lizhang <lizhang@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/07 15:04:30 by lizhang       #+#    #+#                 */
-/*   Updated: 2023/05/19 18:12:48 by lizhang       ########   odam.nl         */
+/*   Updated: 2023/05/21 18:14:42 by lizhang       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
 #include "Intern.hpp"
 #include <iostream>
 
 int main()
 {
-	Intern someRandomIntern;
-	AForm *rrf;
-
-	rrf = someRandomIntern.makeForm("RobotomyRequestForm", "Bender");
-	delete rrf;
+	AForm	*a;
+	Intern	b;
+	a = b.makeForm("RobotomyRequestForm", "Lisa");
+	delete a;
 	return 0;
 }

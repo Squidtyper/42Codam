@@ -6,7 +6,7 @@
 /*   By: lizhang <lizhang@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/12 19:17:13 by lizhang       #+#    #+#                 */
-/*   Updated: 2023/05/19 17:44:49 by lizhang       ########   odam.nl         */
+/*   Updated: 2023/05/21 17:23:21 by lizhang       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,28 @@ RobotomyRequestForm   &RobotomyRequestForm::operator=(RobotomyRequestForm &anoth
 
 std::string		RobotomyRequestForm::getName() const
 {
-	return(this->_name);
+	return(this->AForm::getName());
 }
 
 bool	RobotomyRequestForm::getState() const
 {
-	return(this->_signed);
+	return(this->AForm::getState());
 }
 
 int		RobotomyRequestForm::getSignGrade() const
 {
-	return(this->_signGrade);
+	return(this->AForm::getSignGrade());
 }
 
 int		RobotomyRequestForm::getExeGrade() const
 {
-	return(this->_exeGrade);
+	return(this->AForm::getExeGrade());
 }
 	
 void	RobotomyRequestForm::beSigned(Bureaucrat &Bureaucrat)
 {
-	if (Bureaucrat.getGrade() <= this->_signGrade && this->getState() == false)
-		this->_signed = true;
+	if (Bureaucrat.getGrade() <= this->getSignGrade() && this->getState() == false)
+		this->AForm::beSigned(Bureaucrat);
 	else
 		throw (std::invalid_argument("RobotomyRequestForm cannot be signed by "+\
 		Bureaucrat.getName()+" because the level of the bureaucrat is too low"));

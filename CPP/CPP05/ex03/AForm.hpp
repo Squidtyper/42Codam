@@ -6,7 +6,7 @@
 /*   By: lizhang <lizhang@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/12 13:17:14 by lizhang       #+#    #+#                 */
-/*   Updated: 2023/05/19 17:39:43 by lizhang       ########   odam.nl         */
+/*   Updated: 2023/05/21 17:17:51 by lizhang       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Bureaucrat;
 
 class AForm
 {
-	protected:
+	private:
 		std::string const		_name;
 		std::string const		_target;
 		bool					_signed;

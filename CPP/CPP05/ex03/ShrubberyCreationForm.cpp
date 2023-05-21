@@ -6,7 +6,7 @@
 /*   By: lizhang <lizhang@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/12 18:50:53 by lizhang       #+#    #+#                 */
-/*   Updated: 2023/05/19 17:42:53 by lizhang       ########   odam.nl         */
+/*   Updated: 2023/05/21 17:25:02 by lizhang       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,28 @@ ShrubberyCreationForm   &ShrubberyCreationForm::operator=(ShrubberyCreationForm 
 
 std::string		ShrubberyCreationForm::getName() const
 {
-	return(this->_name);
+	return(this->AForm::getName());
 }
 
 bool	ShrubberyCreationForm::getState() const
 {
-	return(this->_signed);
+	return(this->AForm::getState());
 }
 
 int		ShrubberyCreationForm::getSignGrade() const
 {
-	return(this->_signGrade);
+	return(this->AForm::getSignGrade());
 }
 
 int		ShrubberyCreationForm::getExeGrade() const
 {
-	return(this->_exeGrade);
+	return(this->AForm::getExeGrade());
 }
 	
 void	ShrubberyCreationForm::beSigned(Bureaucrat &Bureaucrat)
 {
-	if (Bureaucrat.getGrade() <= this->_signGrade && this->getState() == false)
-		this->_signed = true;
+	if (Bureaucrat.getGrade() <= this->getSignGrade() && this->getState() == false)
+		this->AForm::beSigned(Bureaucrat);
 	else
 		throw (std::invalid_argument("ShrubberryCreationForm cannot be signed by "+\
 		Bureaucrat.getName()+" because the level of the bureaucrat is too low"));
@@ -87,7 +87,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const{
 			std::cerr<<this->getTarget()+"_shrubbery permission denied"<<std::endl;
 			return ;
 		}
-		outfile<<"  /\\\n /  \\\n/     \\\n--||--";
+		outfile<<"  /\\\n /  \\\n/    \\\n--||--";
 		outfile.close();
 		std::cout<<executor.getName()<<" successfully executed the form on "<<this->getTarget()<<std::endl;
 	}

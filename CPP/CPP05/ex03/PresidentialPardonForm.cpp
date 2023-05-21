@@ -6,7 +6,7 @@
 /*   By: lizhang <lizhang@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/19 15:13:27 by lizhang       #+#    #+#                 */
-/*   Updated: 2023/05/19 17:41:26 by lizhang       ########   odam.nl         */
+/*   Updated: 2023/05/21 17:21:13 by lizhang       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,28 @@ PresidentialPardonForm   &PresidentialPardonForm::operator=(PresidentialPardonFo
 
 std::string		PresidentialPardonForm::getName() const
 {
-	return(this->_name);
+	return(this->AForm::getName());
 }
 
 bool	PresidentialPardonForm::getState() const
 {
-	return(this->_signed);
+	return(this->AForm::getState());
 }
 
 int		PresidentialPardonForm::getSignGrade() const
 {
-	return(this->_signGrade);
+	return(this->AForm::getSignGrade());
 }
 
 int		PresidentialPardonForm::getExeGrade() const
 {
-	return(this->_exeGrade);
+	return(this->AForm::getExeGrade());
 }
 	
 void	PresidentialPardonForm::beSigned(Bureaucrat &Bureaucrat)
 {
-	if (Bureaucrat.getGrade() <= this->_signGrade && this->getState() == false)
-		this->_signed = true;
+	if (Bureaucrat.getGrade() <= this->getSignGrade() && this->getState() == false)
+		this->AForm::beSigned(Bureaucrat);
 	else
 		throw (std::invalid_argument("PresidentialPardonForm cannot be signed by "+\
 		Bureaucrat.getName()+" because the level of the bureaucrat is too low"));
