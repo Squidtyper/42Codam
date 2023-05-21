@@ -3,8 +3,8 @@ A selection of a few school projects
 
 ## Content
 **libft:**
-Language C
-Rewrite some stdlib string and unistd functions with some extra handy functions to be used later in other projects.
+<br>Language C
+<br>Rewrite some stdlib string and unistd functions with some extra handy functions to be used later in other projects.
 
 **printf:**
 Language C
