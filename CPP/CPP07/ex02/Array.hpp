@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   whatever.hpp                                       :+:    :+:            */
+/*   Array.hpp                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lizhang <lizhang@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/06/11 12:49:52 by lizhang       #+#    #+#                 */
-/*   Updated: 2023/07/03 14:43:13 by lizhang       ########   odam.nl         */
+/*   Created: 2023/07/01 13:15:44 by lizhang       #+#    #+#                 */
+/*   Updated: 2023/07/03 16:05:05 by lizhang       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-#define WHATEVER_HPP
+#ifndef ARRAY_HPP
+#define ARRAY_HPP
+
 
 template <typename T>
-void    swap(T &a, T &b)
+class Array
 {
-	T c;
-	c = b;
-	b = a;
-	a = c;
-}
+	private:
+		T				*_data;
+		unsigned int	_s;
 
-template <typename T>
-T	min(T &a, T &b)
-{
-	if (a < b)
-		return (a);
-	else
-		return (b);
-}
-
-template <typename T>
-T	max(T &a, T &b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
+	public:
+		Array();
+		Array(unsigned int n);
+		Array(Array<T> &another);
+		~Array();
+		Array &operator=(Array<T> &another);
+		T &operator[](int index);
+		unsigned int	size() const;
+};
 
 #endif

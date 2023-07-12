@@ -6,7 +6,7 @@
 /*   By: lizhang <lizhang@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/11 16:38:55 by lizhang       #+#    #+#                 */
-/*   Updated: 2023/06/11 18:26:33 by lizhang       ########   odam.nl         */
+/*   Updated: 2023/07/03 15:05:26 by lizhang       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,21 @@
 #include <string>
 #include <iostream>
 
-template <typename T, typename W>
-void iteration(T &data, W len, void (*f)(T))
+template <typename T, typename W, typename F>
+void iter(T data, W len, F f)
 {
-	int i = 0;
-	while (i < (int)len)
+	if (len < 0)
+		throw (std::invalid_argument("len should be a positive number"));
+	for(size_t i = 0; i < (size_t)len; i++)
 	{
-		std::cout<<data<<std::endl;
-		f(&data[i]);
+		f(data[i]);
 	}
 }
 
 template <typename T>
-void    uppercase(T str)
+void    uppercase(T &array)
 {
-	std::string cast = static_cast<std::string>(str);
-	std::transform(cast.begin(), cast.end(), cast.begin(),::toupper);
-	std::cout <<cast<<std::endl;
+	std::transform(array.begin(), array.end(), array.begin(),::toupper);
 }
-
-//why will the function only move 1 bit in the while loop and not move up one string???
 
 #endif

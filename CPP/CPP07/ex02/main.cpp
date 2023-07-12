@@ -5,28 +5,42 @@
 /*                                                     +:+                    */
 /*   By: lizhang <lizhang@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/06/11 13:22:54 by lizhang       #+#    #+#                 */
-/*   Updated: 2023/07/03 14:47:49 by lizhang       ########   odam.nl         */
+/*   Created: 2023/07/01 13:57:35 by lizhang       #+#    #+#                 */
+/*   Updated: 2023/07/03 16:11:52 by lizhang       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Array.hpp"
+#include "Array.ipp"
 #include <iostream>
-#include "whatever.hpp"
-#include <string>
 
 int main(void)
 {
-	int a = 10;
-	int b = 20;
-	std::cout<<"before swap: a = "<< a << " b = "<< b << std::endl;
-	swap(a, b);
-	std::cout<<"after swap: a = " << a << " b = " << b << std::endl;
-	std::cout<<"the larger of a and b is: "<< max(a, b)<< std::endl;
-	std::cout<<"the smaller of a and b is: "<< min(a, b)<< std::endl;
-	std::string c = "A text.";
-	std::string d = "Another text.";
-	std::cout<<"c and d before swap: c = "<< c << " d = " << d << std::endl;
-	swap(c, d);
-	std::cout<<"swap a and c: c = "<< c << " d = " << d << std::endl;
+	Array<int> A;
+	std::cout<<"size of A is: "<<A.size()<<std::endl;
+	Array<int> B(2);
+	std::cout<<"size of B is: "<<B.size()<<std::endl;
+	Array<int> C(A);
+	try
+	{
+		std::cout<<&B[3]<<std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	try
+	{
+		std::cout<<&B[-1]<<std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	B[0] = 100;
+	std::cout<<"B[0] value: "<<B[0]<<std::endl;
+	A = B;
+	std::cout<<"size of A is: "<<A.size()<<std::endl;
+	std::cout<<&B[1]<<std::endl;
 	return (0);
 }
