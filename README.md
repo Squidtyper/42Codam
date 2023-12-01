@@ -26,6 +26,11 @@ A selection of a few school projects
 <br>Making a 3D environment using MLX42 library and raycasting priciples. In collaboration with **greedymelon**(github name).
 <br>This project is saved in a separate repository: https://github.com/Squidtyper/Cub3D.git
 
+**Webserv:**
+<br>Language C++
+<br>Making a server from scratch which handles HTTP requests on MacOS systems using kque. In collaboration with **zangetsu89**and **tatamize** (github names).
+<br>This project is saved in a separate repository: https://github.com/Zangetsu89/webserve.git
+
 **CPP:**
 <br>Language C++
 <br>A series of exercises addressing each time a specific topic.
