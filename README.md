@@ -35,3 +35,8 @@ A selection of a few school projects
 <br>Language C++
 <br>A series of exercises addressing each time a specific topic.
 <br>Each exercise contains a subject document in pdf.
+
+**Inception:**
+<br>Docker and Docker Compose
+<br>Test a WordPress website on a VM machine. First change the host IP to lizhang.42.fr. Docker compose creates 3 containers, NGINX, WordPress and MariaDB 2 volumes WordPress and MariaDB.  NGINX manages all requests from the clients, WordPress runs PHP-FPM and MariaDB saves all user data. For this project, pulling from official images are prohibited, therefore Debian12.12 is used. 
+
