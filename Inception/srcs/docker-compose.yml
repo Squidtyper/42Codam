@@ -1,0 +1,92 @@
+# Legacy docker files starts with the specification of the docker file version. 2.x and 3.x versions dictates which version specific keywords can be used.
+# However the newest version of Dockerfile is called "Compose Specification" which encoporate both 2.x and 3.x keywords and eliminates the need to specify the version.
+
+volumes:
+  wordpress:
+    name: wordpress
+    driver_opts:
+      type: none
+      device: /home/${LOGIN}/data/wordpress
+      o: bind
+  mariadb:
+    name: mariadb
+    driver_opts:
+      type: none
+      device: /home/${LOGIN}/data/mariadb
+      o: bind
+
+
+services:
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mariadb:/var/lib/mysql
+    networks:
+      - wp-networks
+    expose:
+      - "3306"
+  
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    container_name: wordpress
+    environment:
+      WP_DB_NAME: ${MYSQL_DATABASE}
+      WP_DB_HOST: mariadb:3306
+      WP_DB_USER: ${MYSQL_USER}
+      WP_DB_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_CLIENT_FLAGS: "--ssl-mode=DISABLED"
+      # ssl: secure sockets layer, encrypts data so if someone intercepts the messages on the network, that person cannot directly see the password
+      # however on docker all communication are local and therefor no need to enforce ssl
+      # the newest wordpress tries to connect with ssl by default but mariadb is not configured with ssl certificates 
+      WP_SITEURL: https://${DOMAIN_NAME}
+      WP_ADMIN_USER: ${WP_USER1}
+      WP_ADMIN_PASSWORD: ${WP_USER1_PASSWORD}
+      WP_ADMIN_EMAIL: ${WP_USER1_EMAIL}
+      WP_USER2: ${WP_USER2}
+      WP_USER2_PASSWORD: ${WP_USER2_PASSWORD}
+      WP_USER2_ROLE: ${WP_USER2_ROLE}
+      WP_USER2_EMAIL: ${WP_USER2_EMAIL}
+      DOMAIN_NAME: ${DOMAIN_NAME}
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - wp-networks
+    depends_on:
+      - mariadb
+    expose:
+      - "9000"
+      # WordPress exposed to NGINX
+
+  nginx:
+    image: nginx:1.29
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    environment:
+      DOMAIN_NAME: ${DOMAIN_NAME}
+    volumes:
+      - ./certs:/etc/nginx/certs
+      - ./requirements/nginx/conf.d:/etc/nginx/conf.d
+      - wordpress:/var/www/html
+    networks: 
+      - wp-networks
+    ports: 
+      - "443:443"
+      #Expose Nginx to host
+    depends_on:
+      - wordpress
+
+networks:
+  wp-networks:
+    name: wp-networks
